@@ -48,7 +48,7 @@ pcall(function()
         warn = noop
         error = noop
     -- Libraries
-    local OrbitingLibrary                           = loadstring(game:HttpGet("https://raw.githubusercontent.com/synfulangel/Xuaa/main/Dependencies/Libraries/OrbitLibrary.lua"))()
+    local OrbitingLibrary                           = loadstring(game:HttpGet("https://raw.githubusercontent.com/firm0001/uwu/main/dependencies/orbit.lua"))()
     local ReplicatedStorage                         = game:GetService("ReplicatedStorage")
     local RunService                                = game:GetService("RunService")
     local Players                                   = game:GetService("Players")
@@ -327,7 +327,7 @@ pcall(function()
     end
     
     local function Load()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/synfulangel/Xuaa/main/Dependencies/UnifiedNamingConvection.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/firm0001/uwu/main/dependencies/unc.lua"))()
         UpdateCheck()
     end
     
