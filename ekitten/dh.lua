@@ -30,7 +30,7 @@ InviteLabelCorner.CornerRadius = UDim.new(0.1, 0)
 InviteLabelCorner.Parent = InviteLabel
 
 DescriptionLabel.Parent = Frame
-DescriptionLabel.Text = "Summon I won't be apart of xuaa anymore. If you want to continue your subscription from xuaa, join that server."
+DescriptionLabel.Text = "-Summon I won't be apart of xuaa anymore. If you want to continue your subscription from xuaa, join that server."
 DescriptionLabel.Size = UDim2.new(1, -20, 0.5, -20)
 DescriptionLabel.Position = UDim2.new(0, 10, 0.4, 10)
 DescriptionLabel.TextColor3 = Color3.new(1, 1, 1)
