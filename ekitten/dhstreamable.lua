@@ -292,7 +292,7 @@ local function SilentAim(tool)
                     PredictedPosition = closestTarget.Character[Kira.Silent.HitPart].Position + (closestTarget.Character[Kira.Silent.HitPart].Velocity * RegularPrediction)
                 end
 
-                game.ReplicatedStorage.MainEvent:FireServer(Kira.Setup.Arg, PredictedPosition)
+                game.ReplicatedStorage[Kira.Setup.Remote]:FireServer(Kira.Setup.Arg, PredictedPosition)
             end
         end)
     end
