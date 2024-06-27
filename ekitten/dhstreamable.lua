@@ -115,8 +115,7 @@ end
 local function DrawCamlockFOVCircle()
     local FOVCircle = Drawing.new("Circle")
     FOVCircle.Thickness = Kira.Camlock.FOV.Thickness or 1
-    FOVCircle.NumSides = 64
-    FOVCircle.Radius = Kira.Camlock.FOV.Radius or 150
+    FOVCircle.Radius = Kira.Camlock.FOV.Radius
     FOVCircle.Color = Kira.Camlock.FOV.Color or Color3.fromRGB(255, 0, 0)
     FOVCircle.Transparency = Kira.Camlock.FOV.Transparency or 0.5
     FOVCircle.Visible = Kira.Camlock.FOV.Visible
@@ -128,7 +127,7 @@ end
 local function DrawSilentFOVCircle()
     local FOVCircle = Drawing.new("Circle")
     FOVCircle.Thickness = Kira.Silent.FOV.Thickness or 1
-    FOVCircle.Radius = Kira.Silent.FOV.Radius or 150
+    FOVCircle.Radius = Kira.Silent.FOV.Radius
     FOVCircle.Color = Kira.Silent.FOV.Color or Color3.fromRGB(255, 0, 0)
     FOVCircle.Transparency = Kira.Silent.FOV.Transparency or 0.5
     FOVCircle.Visible = Kira.Silent.FOV.Visible
@@ -233,35 +232,10 @@ local function updateWatermarkPosition()
 end
 
 RunService.RenderStepped:Connect(function()
-    if getgenv().CursorWM then
+    if Kira.Setup.Watermark then
         updateWatermarkPosition()
     end
 end)
-local function Velocity_V1(target)
-    if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
-        local hrp = target.Character.HumanoidRootPart
-        local lastPos = hrp.Position
-        task.wait()
-        local currentPos = hrp.Position
-        local velocity = (currentPos - lastPos) * 0
-        
-        hrp.Velocity = velocity
-        hrp.AssemblyLinearVelocity = velocity
-    end
-end
-
-RunService.RenderStepped:Connect(function()
-    if Kira.Resolver.Enabled then
-        local target1 = GetClosestTargetToMouse()
-        local target2 = GetClosestTargetToMouse_Silent()
-
-        if Kira.Resolver.Mode == 'Recalculate' then
-            Velocity_V1(target1)
-            Velocity_V1(target2)
-        end
-    end
-end)
-
 local function Camlock()
     if Kira.Camlock.Enabled == false then
         LockedTarget = nil
