@@ -1,12 +1,12 @@
 Kira = getgenv().Kira
 if Kira.Setup.Loaded then
-    local kiraUI = Instance.new("ScreenGui")
-    kiraUI.Name = "KiraUI"
-    kiraUI.Parent = game.CoreGui
-    kiraUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    local GrimUI = Instance.new("ScreenGui")
+    GrimUI.Name = "GrimUI"
+    GrimUI.Parent = game.CoreGui
+    GrimUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     
     local Blur = Instance.new("BlurEffect")
-    Blur.Name = "kiraUIBlur"
+    Blur.Name = "GrimUIBlur"
     Blur.Size = 0
     Blur.Parent = game.Lighting
     
@@ -19,12 +19,12 @@ if Kira.Setup.Loaded then
     
     local Title = Instance.new("TextLabel")
     Title.Name = "Title"
-    Title.Parent = kiraUI
+    Title.Parent = GrimUI
     Title.Size = UDim2.new(0, 230, 0, 50)
     Title.Position = UDim2.new(0.5, -60, 0.5, -25)
     Title.AnchorPoint = Vector2.new(0.4, 0.5)
     Title.BackgroundTransparency = 1
-    Title.Text = "Kira"
+    Title.Text = "Grim"
     Title.TextColor3 = Color3.fromRGB(255, 255, 255)
     Title.TextScaled = true
     Title.Font = Enum.Font.SourceSansBold
@@ -37,13 +37,13 @@ if Kira.Setup.Loaded then
     ccLabel.AnchorPoint = Vector2.new(0, 0)
     ccLabel.BackgroundTransparency = 1
     ccLabel.Text = ".CC"
-    ccLabel.TextColor3 = Color3.fromRGB(127,255,0)
+    ccLabel.TextColor3 = Color3.fromRGB(127, 0, 255) -- Purple color
     ccLabel.TextScaled = true
     ccLabel.Font = Enum.Font.SourceSansBold
     
     local Subtext = Instance.new("TextLabel")
     Subtext.Name = "Subtext"
-    Subtext.Parent = kiraUI
+    Subtext.Parent = GrimUI
     Subtext.Size = UDim2.new(0, 300, 0, 20)
     Subtext.Position = UDim2.new(0.5, 0, 0.5, -3)
     Subtext.AnchorPoint = Vector2.new(0.5, 0)
@@ -67,7 +67,7 @@ if Kira.Setup.Loaded then
         tweenGui(Blur, { Size = 0 }, 0.5)
     
         fadeOutTween1.Completed:Connect(function()
-            kiraUI:Destroy()
+            GrimUI:Destroy()
         end)
     end
     
