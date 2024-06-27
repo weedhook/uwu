@@ -93,12 +93,12 @@ local function GlobalChecks(Target)
         end
     end
 
-    if Kira.Checks.Visible then
+        if Kira.Checks.Visible then
         local head = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Head")
         local TargetVisiblePart = Target.Character:FindFirstChild("Head")
 
         if head and TargetVisiblePart then
-            local ray = Ray.new(head.Position, (TargetVisiblePart.Position - head.Position).unit * 9e9)
+            local ray = Ray.new(head.Position, (TargetVisiblePart.Position - head.Position).unit * (TargetVisiblePart.Position - head.Position).magnitude)
             local part, position = game.Workspace:FindPartOnRay(ray, LocalPlayer.Character)
             
             if part and part:IsDescendantOf(Target.Character) then
@@ -106,6 +106,8 @@ local function GlobalChecks(Target)
             else
                 return false
             end
+        else
+            return false
         end
     end
 
