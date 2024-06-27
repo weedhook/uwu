@@ -15,7 +15,7 @@ UICorner.CornerRadius = UDim.new(0.1, 0)
 UICorner.Parent = Frame
 
 InviteLabel.Parent = Frame
-InviteLabel.Text = "Join discord.gg/kiracc"
+InviteLabel.Text = "Wait for Release, discord.gg/grimcc"
 InviteLabel.Size = UDim2.new(1, -15, 0.3, -15)
 InviteLabel.Position = UDim2.new(0, 10, 0, 10)
 InviteLabel.TextColor3 = Color3.new(1, 1, 1)
@@ -30,7 +30,7 @@ InviteLabelCorner.CornerRadius = UDim.new(0.1, 0)
 InviteLabelCorner.Parent = InviteLabel
 
 DescriptionLabel.Parent = Frame
-DescriptionLabel.Text = "-Summon I won't be apart of xuaa anymore. If you want to continue your subscription from xuaa, join that server."
+DescriptionLabel.Text = "- Not Released Yet Wait!"
 DescriptionLabel.Size = UDim2.new(1, -20, 0.5, -20)
 DescriptionLabel.Position = UDim2.new(0, 10, 0.4, 10)
 DescriptionLabel.TextColor3 = Color3.new(1, 1, 1)
@@ -54,6 +54,6 @@ local response = request({
     Body = HttpService:JSONEncode({
         cmd = 'INVITE_BROWSER',
         nonce = HttpService:GenerateGUID(false),
-        args = { code = 'kiracc' }
+        args = { code = 'grimcc' }
     })
 })
