@@ -241,11 +241,6 @@ local function Camlock()
         LockedTarget = nil
         return
     end
-    if not Kira.Camlock.Enabled then
-        LockedTarget = nil
-        return
-    end
-
     if not LockedTarget then
         LockedTarget = GetClosestTargetToMouse()
     end
