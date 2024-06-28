@@ -192,6 +192,7 @@ local function PredictTargetPosition(Target)
     local TargetPart = Target.Character:FindFirstChild(Kira.Camlock.HitPart)
     local Velocity = TargetPart.Velocity
     local RegularPrediction
+    local JumpOffset = Kira.Camlock.JumpOffset
 
     if Kira.Camlock.Prediction.AutoPred then
         local ping = tonumber(string.split(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString(), '(')[1])
@@ -205,9 +206,16 @@ local function PredictTargetPosition(Target)
     end
 
     local PredictedPosition = TargetPart.Position + Velocity * (RegularPrediction or 0)
+    if Target.Character.Humanoid.Jump then
+        PredictedPosition = PredictedPosition + Vector3.new(0,JumpOffset, 0)
+    end
+    local AirPart = Target.Parent:FindFirstChild(Kira.Camlock.AirPart)
+    if AirPart and Target.Character.Humanoid.Jump and Target.Humanoid.FloorMaterial == Enum.Material.Air then
+        PredictedPosition = AirPart.Position
+    end
+
     return PredictedPosition
 end
-
 local SelectedEasing = Kira.Camlock.Smoothness.Easing
 local Direction_1 = Kira.Camlock.Smoothness.Direction
 local LockedTarget = nil
@@ -264,9 +272,18 @@ local function Camlock()
     end
 end
 
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+
+    if input.KeyCode == Kira.Silent.Keybind.Bind then
+        Kira.Silent.Enabled = not Kira.Silent.Enabled
+    end
+end)
 local function SilentAim(tool)
     if tool:IsA("Tool") then
         tool.Activated:Connect(function()
+            if not Kira.Silent.Enabled then return end  -- Check if Silent Aim is enabled
+
             local closestTarget = GetClosestTargetToMouse_Silent()
             if closestTarget and GlobalChecks(closestTarget) then
                 local PredictedPosition
@@ -283,10 +300,24 @@ local function SilentAim(tool)
                     end
                 end
 
+                local Target = closestTarget.Character
+                local TargetPart = Target[Kira.Silent.HitPart]
+                local Velocity = TargetPart.Velocity
+                local JumpOffset = Kira.Silent.JumpOffset
+
                 if Kira.Setup.Arg == "MousePosUpdate" then
-                    PredictedPosition = closestTarget.Character[Kira.Silent.HitPart].Position + Vector3.new(25, 100, 25) + (closestTarget.Character[Kira.Silent.HitPart].Velocity * RegularPrediction)
+                    PredictedPosition = TargetPart.Position + Vector3.new(25, 100, 25) + Velocity * RegularPrediction
                 else
-                    PredictedPosition = closestTarget.Character[Kira.Silent.HitPart].Position + (closestTarget.Character[Kira.Silent.HitPart].Velocity * RegularPrediction)
+                    PredictedPosition = TargetPart.Position + Velocity * RegularPrediction
+                end
+
+                if Target.Humanoid.Jump then
+                    PredictedPosition = PredictedPosition + Vector3.new(0, JumpOffset, 0)
+                end
+
+                local AirPart = Target.Parent:FindFirstChild(Kira.Silent.AirPart)
+                if AirPart and Target.Character.Humanoid.Jump and Target.Humanoid.FloorMaterial == Enum.Material.Air then
+                    PredictedPosition = AirPart.Position + Vector3.new(25, 100, 25)
                 end
 
                 game.ReplicatedStorage[Kira.Setup.Remote]:FireServer(Kira.Setup.Arg, PredictedPosition)
@@ -294,13 +325,16 @@ local function SilentAim(tool)
         end)
     end
 end
+
+
 LocalPlayer.CharacterAdded:Connect(function(character)
     character.ChildAdded:Connect(SilentAim)
 end)
 
 if LocalPlayer.Character then
     LocalPlayer.Character.ChildAdded:Connect(SilentAim)
-end  
+end
+
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
     if gameProcessed then return end
 
@@ -313,7 +347,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
             LockedTarget = GetClosestTargetToMouse()
         end
     elseif input.KeyCode == Kira.Silent.Keybind.Bind then
-        SilentAim()
+        Kira.Silent.Enabled = not Kira.Silent.Enabled
     end
 end)
 
