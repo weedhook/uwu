@@ -1,5 +1,4 @@
 local Auth = "https://permit-dn3p.onrender.com"
-
 local function parseJson(response)
     local success, result = pcall(function()
         return game:GetService("HttpService"):JSONDecode(response)
@@ -21,4 +20,5 @@ local function authenticateKey(key)
         game.Players.LocalPlayer:Kick("discord.gg/grimcc")
     end
 end
-authenticateKey(...)
+local key = ...
+authenticateKey(key)
