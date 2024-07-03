@@ -20,5 +20,6 @@ local function authenticateKey(key)
         game.Players.LocalPlayer:Kick("discord.gg/grimcc")
     end
 end
-local key = ...
-authenticateKey(key)
+getgenv().key = key
+local getgenv().key = ...
+authenticateKey(getgenv().key)
