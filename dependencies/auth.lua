@@ -2687,19 +2687,12 @@ RunService.Heartbeat:Connect(function()
                 if Part then
                     local Prediction = getgenv().AutoPred and (ping and (ping / 1000 + (ping < 130 and 0.037 or 0.033)) or 0.1)
                     local Pos = Part.Position + Part.Velocity * Prediction
-                    SilentAim(Pos)
+                    SAim(Pos)
                 end
             end
         end
     end
 end)
-
-for _, conn in ipairs(getconnections(RunService.Heartbeat)) do
-    local func = conn.Function
-    if typeof(func) == "function" and #debug.getconstants(func) == 315 then
-        debug.setconstant(func, 91, Vector3.zero)
-    end
-end
 
 local Hook
 Hook = hookmetamethod(game, "__index", function(self, prop)
