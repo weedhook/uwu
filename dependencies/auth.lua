@@ -2540,45 +2540,59 @@ Modules.Visuals = {
 }
 
 local function GlobalChecks(Target)
-    if not (Target and Target.Character:FindFirstChild("HumanoidRootPart")) then
+    if not Target or not Target.Character then
         return false
     end
-
+    
     local Character = Target.Character
     
-    if Library.Flags["KOCheck"] and Character:FindFirstChild("BodyEffects") and Character.BodyEffects:FindFirstChild("K.O") and Character.BodyEffects["K.O"].Value then 
-        return false 
-    end
-    if Library.Flags["GrabbedCheck"] and Character:FindFirstChild("GRABBING_CONSTRAINT") then 
-        return false 
-    end
-    if Library.Flags["VisibleCheck"] then
-        local posed = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild(Library.Flags["TargetHitPart"])
-        local TargetVisiblePart = Character:FindFirstChild(Library.Flags["TargetHitPart"])
-        if posed and TargetVisiblePart then
-            local ray = Ray.new(posed.Position, (TargetVisiblePart.Position - posed.Position).unit * (TargetVisiblePart.Position - posed.Position).Magnitude)
-            local part = game.Workspace:FindPartOnRay(ray, LocalPlayer.Character)
-            return part and part:IsDescendantOf(Character)
-        end
+    if not Character:FindFirstChild("HumanoidRootPart") then
         return false
     end
-    if Library.Flags["CrewCheck"] then
-        if Target:FindFirstChild("DataFolder") and Target.DataFolder:FindFirstChild("Information") and Target.DataFolder.Information:FindFirstChild("Crew") and Target.DataFolder.Information.Crew.Value == LocalPlayer.DataFolder.Information.Crew.Value then 
-            return false 
+    
+    if Library.Flags["KOCheck"] then
+        local BodyEffects = Character:FindFirstChild("BodyEffects")
+        if BodyEffects and BodyEffects:FindFirstChild("K.O") and BodyEffects["K.O"].Value then
+            return false
         end
     end
+    
+    if Library.Flags["GrabbedCheck"] and Character:FindFirstChild("GRABBING_CONSTRAINT") then
+        return false
+    end
+    
+    if Library.Flags["VisibleCheck"] then
+        local LocalCharacter = LocalPlayer.Character
+        local posed = LocalCharacter and LocalCharacter:FindFirstChild(Library.Flags["TargetHitPart"])
+        local TargetVisiblePart = Character:FindFirstChild(Library.Flags["TargetHitPart"])
+        
+        if posed and TargetVisiblePart then
+            local ray = Ray.new(posed.Position, (TargetVisiblePart.Position - posed.Position).unit * (TargetVisiblePart.Position - posed.Position).Magnitude)
+            local part = game.Workspace:FindPartOnRay(ray, LocalCharacter)
+            return part and part:IsDescendantOf(Character)
+        end
+        
+        return false
+    end
+    
+    if Library.Flags["CrewCheck"] then
+        local DataFolder = Target:FindFirstChild("DataFolder")
+        local Information = DataFolder and DataFolder:FindFirstChild("Information")
+        if Information and Information:FindFirstChild("Crew") and Information.Crew.Value == LocalPlayer.DataFolder.Information.Crew.Value then
+            return false
+        end
+    end
+    
     if Library.Flags["DistanceCheck"] then
         local trg_pos = Character.HumanoidRootPart.Position
         local lp_pos = LocalPlayer.Character.HumanoidRootPart.Position
-        local dis = (trg_pos - lp_pos).Magnitude
-        if dis > Library.Flags["DistanceInt"] then 
-            return false 
-        end
-    end
-    if Library.Flags["FriendCheck"] then
-        if Players.LocalPlayer:IsFriendsWith(Target.UserId) then
+        if (trg_pos - lp_pos).Magnitude > Library.Flags["DistanceInt"] then
             return false
         end
+    end
+    
+    if Library.Flags["FriendCheck"] and Players.LocalPlayer:IsFriendsWith(Target.UserId) then
+        return false
     end
 
     return true
@@ -2673,7 +2687,10 @@ RunService.Heartbeat:Connect(function()
             if Library.Flags["AimbotMethod"] == "FOV" and Library.Flags["AimbotBypass"] == "Event Trigger" then
                 Target = ObtainTarget()
             elseif Library.Flags["AimbotMethod"] == "Target" then
-                if not CurrentTarget and Library.Flags["GetTarget"] then
+                if not Library.Flags["GetTarget"] then
+                    CurrentTarget = nil
+                    Window:Notify("Target is Disabled", 1.5)
+                elseif not CurrentTarget then
                     CurrentTarget = ObtainTarget()
                     if CurrentTarget then
                         Window:Notify("Targeting " .. CurrentTarget.Name, 1.5)
@@ -2701,7 +2718,10 @@ Hook = hookmetamethod(game, "__index", function(self, prop)
         if Library.Flags["AimbotBypass"] == "Mouse Index" and Library.Flags["AimbotMethod"] == "FOV" then
             Target = ObtainTarget()
         elseif Library.Flags["AimbotMethod"] == "Target" then
-            if not CurrentTarget and Library.Flags["GetTarget"] then
+            if not Library.Flags["GetTarget"] then
+                CurrentTarget = nil
+                Window:Notify("Target is Disabled", 1.5)
+            elseif not CurrentTarget then
                 CurrentTarget = ObtainTarget()
                 if CurrentTarget then
                     Window:Notify("Targeting " .. CurrentTarget.Name, 1.5)
@@ -2719,10 +2739,6 @@ Hook = hookmetamethod(game, "__index", function(self, prop)
     end
     return Hook(self, prop)
 end)
-
-if not CurrentTarget then
-    Window:Notify("Target is Disabled", 1.5)
-end
 
 local gui_inset = game:GetService("GuiService"):GetGuiInset()
 local function AIMREL(vector2, factor)
