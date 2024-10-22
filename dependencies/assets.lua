@@ -1,3 +1,10 @@
+if not isfolder('Spectral/Assets/Images') then
+    makefolder('Spectral/Assets/Images')
+end
+if not isfolder('Spectral/Assets/Fonts') then
+    makefolder('Spectral/Assets/Fonts')
+end
+
 local Material = {
     ['BaseParts'] = {
         Plastic = Enum.Material.Plastic,
@@ -66,24 +73,24 @@ local fonts = {
 }
 
 for _, font in ipairs(fonts) do
-    if not isfile(font.ttf) then
-        writefile(font.ttf, base64_decode(game:HttpGet(font.url)))
+    if not isfile('Spectral/Assets/Fonts/'..font.ttf) then
+        writefile('Spectral/Assets/Fonts/'..font.ttf, base64_decode(game:HttpGet(font.url)))
     end
 
-    if not isfile(font.json) then
+    if not isfile('Spectral/Assets/Fonts/'..font.json) then
         local fontConfig = {name = font.name, faces = {{name = "Regular", weight = 200, style = "normal", assetId = getcustomasset(font.ttf)}}}
-        writefile(font.json, game:GetService('HttpService'):JSONEncode(fontConfig))
+        writefile('Spectral/Assets/Fonts/'..font.json, game:GetService('HttpService'):JSONEncode(fontConfig))
     end
 end
 
 local DrawingFontsEnum = {
-    [0] = Font.new(getcustomasset("Verdana.json"), Enum.FontWeight.Regular),
-    [1] = Font.new(getcustomasset("SmallestPixel7.json"), Enum.FontWeight.Regular),
-    [2] = Font.new(getcustomasset("Proggy.json"), Enum.FontWeight.Regular),
-    [3] = Font.new(getcustomasset("Minecraftia.json"), Enum.FontWeight.Regular),
-    [4] = Font.new(getcustomasset("VerdanaBold.json"), Enum.FontWeight.Regular),
-    [5] = Font.new(getcustomasset("Tahoma.json"), Enum.FontWeight.Regular),
-    [6] = Font.new(getcustomasset("TahomaBold.json"), Enum.FontWeight.Regular),
+    [0] = Font.new(getcustomasset("Spectral/Assets/Fonts/Verdana.json"), Enum.FontWeight.Regular),
+    [1] = Font.new(getcustomasset("Spectral/Assets/Fonts/SmallestPixel7.json"), Enum.FontWeight.Regular),
+    [2] = Font.new(getcustomasset("Spectral/Assets/Fonts/Proggy.json"), Enum.FontWeight.Regular),
+    [3] = Font.new(getcustomasset("Spectral/Assets/Fonts/Minecraftia.json"), Enum.FontWeight.Regular),
+    [4] = Font.new(getcustomasset("Spectral/Assets/Fonts/VerdanaBold.json"), Enum.FontWeight.Regular),
+    [5] = Font.new(getcustomasset("Spectral/Assets/Fonts/Tahoma.json"), Enum.FontWeight.Regular),
+    [6] = Font.new(getcustomasset("Spectral/Assets/Fonts/TahomaBold.json"), Enum.FontWeight.Regular),
 }
 
 function GetFontFromIndex(fontIndex)
@@ -108,31 +115,27 @@ local images = {
 }
 
 for _, img in pairs(images) do
-    if not isfile(img.image) then
-        writefile(img.image, game:HttpGet(img.url))
+    if not isfile('Spectral/Assets/Images/'..img.image) then
+        writefile('Spectral/Assets/Images/'..img.image, game:HttpGet(img.url))
     end
 end
 
 local DrawingImagesEnum = {
-    [0] = getcustomasset("ak47.png"),
-    [1] = getcustomasset("ar.png"),
-    [2] = getcustomasset("aug.png"),
-    [3] = getcustomasset("db.png"),
-    [4] = getcustomasset("flame.png"),
-    [5] = getcustomasset("glock.png"),
-    [6] = getcustomasset("knife.png"),
-    [7] = getcustomasset("lmg.png"),
-    [8] = getcustomasset("p90.png"),
-    [9] = getcustomasset("rev.png"),
-    [10] = getcustomasset("rifle.png"),
-    [11] = getcustomasset("shotgun.png"),
-    [12] = getcustomasset("smg.png"),
-    [13] = getcustomasset("tac.png"),
+    [0] = getcustomasset("Spectral/Assets/Images/ak47.png"),
+    [1] = getcustomasset("Spectral/Assets/Images/ar.png"),
+    [2] = getcustomasset("Spectral/Assets/Images/aug.png"),
+    [3] = getcustomasset("Spectral/Assets/Images/db.png"),
+    [4] = getcustomasset("Spectral/Assets/Images/flame.png"),
+    [5] = getcustomasset("Spectral/Assets/Images/glock.png"),
+    [6] = getcustomasset("Spectral/Assets/Images/knife.png"),
+    [7] = getcustomasset("Spectral/Assets/Images/lmg.png"),
+    [8] = getcustomasset("Spectral/Assets/Images/p90.png"),
+    [9] = getcustomasset("Spectral/Assets/Images/rev.png"),
+    [10] = getcustomasset("Spectral/Assets/Images/rifle.png"),
+    [11] = getcustomasset("Spectral/Assets/Images/shotgun.png"),
+    [12] = getcustomasset("Spectral/Assets/Images/smg.png"),
+    [13] = getcustomasset("Spectral/Assets/Images/tac.png"),
 }
-
-function GetImageFromIndex(imageIndex)
-    return DrawingImagesEnum[imageIndex]
-end
 
 local Textures = {
     ['Normal'] = 'rbxassetid://7151778302',
