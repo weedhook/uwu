@@ -54,3 +54,4 @@ local Material = {
             Sandstone = Enum.Material.Sandstone,
         },
 };
+return Materials;
