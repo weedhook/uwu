@@ -63,23 +63,23 @@ local Material = {
 }
 
 local fonts = {
-    { ttf = "Proggy.ttf", json = "Proggy.json", url = "https://raw.githubusercontent.com/OxygenClub/Random-LUAS/main/Proggy.txt", name = "Proggy" },
-    { ttf = "Minecraftia.ttf", json = "Minecraftia.json", url = "https://raw.githubusercontent.com/OxygenClub/Random-LUAS/main/Minecraftia.txt", name = "Minecraftia" },
-    { ttf = "SmallestPixel7.ttf", json = "SmallestPixel7.json", url = "https://raw.githubusercontent.com/OxygenClub/Random-LUAS/main/Smallest%20Pixel.txt", name = "SmallestPixel7" },
-    { ttf = "Verdana.ttf", json = "Verdana.json", url = "https://raw.githubusercontent.com/OxygenClub/Random-LUAS/main/Verdana.txt", name = "Verdana" },
-    { ttf = "VerdanaBold.ttf", json = "VerdanaBold.json", url = "https://raw.githubusercontent.com/OxygenClub/Random-LUAS/main/Verdana%20Bold.txt", name = "VerdanaBold" },
-    { ttf = "Tahoma.ttf", json = "Tahoma.json", url = "https://raw.githubusercontent.com/OxygenClub/Random-LUAS/main/Tahoma.txt", name = "Tahoma" },
-    { ttf = "TahomaBold.ttf", json = "TahomaBold.json", url = "https://raw.githubusercontent.com/OxygenClub/Random-LUAS/main/Tahoma%20Bold.txt", name = "TahomaBold" }
+    { ttf = "Proggy.ttf", json = "Proggy.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/Proggy.txt", name = "Proggy" },
+    { ttf = "Minecraftia.ttf", json = "Minecraftia.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts//Minecraftia.txt", name = "Minecraftia" },
+    { ttf = "SmallestPixel7.ttf", json = "SmallestPixel7.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/SmallestPixel7.txt", name = "SmallestPixel7" },
+    { ttf = "Verdana.ttf", json = "Verdana.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/Verdana.txt", name = "Verdana" },
+    { ttf = "VerdanaBold.ttf", json = "VerdanaBold.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/VerdanaBold.txt", name = "VerdanaBold" },
+    { ttf = "Tahoma.ttf", json = "Tahoma.json", url = "ttps://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/Tahoma.txt", name = "Tahoma" },
+    { ttf = "TahomaBold.ttf", json = "TahomaBold.json", url = "ttps://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/TahomaBold.txt", name = "TahomaBold" }
 }
 
 for _, font in ipairs(fonts) do
-    if not isfile('Spectral/Assets/Fonts/'..font.ttf) then
-        writefile('Spectral/Assets/Fonts/'..font.ttf, base64_decode(game:HttpGet(font.url)))
+    if not isfile(font.ttf) then
+        writefile(font.ttf, base64_decode(game:HttpGet(font.url)))
     end
 
     if not isfile('Spectral/Assets/Fonts/'..font.json) then
-        local fontConfig = {name = font.name, faces = {{name = "Regular", weight = 200, style = "normal", assetId = getcustomasset(font.ttf)}}}
-        writefile('Spectral/Assets/Fonts/'..font.json, game:GetService('HttpService'):JSONEncode(fontConfig))
+        local Config = {name = font.name, faces = {{name = "Regular", weight = 200, style = "normal", assetId = getcustomasset(font.ttf)}}}
+        writefile(font.json, game:GetService('HttpService'):JSONEncode(Config))
     end
 end
 
