@@ -64,12 +64,12 @@ local Material = {
 
 local fonts = {
     { ttf = "Proggy.ttf", json = "Proggy.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/Proggy.txt", name = "Proggy" },
-    { ttf = "Minecraftia.ttf", json = "Minecraftia.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts//Minecraftia.txt", name = "Minecraftia" },
+    { ttf = "Minecraftia.ttf", json = "Minecraftia.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/Minecraftia.txt", name = "Minecraftia" },
     { ttf = "SmallestPixel7.ttf", json = "SmallestPixel7.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/SmallestPixel7.txt", name = "SmallestPixel7" },
     { ttf = "Verdana.ttf", json = "Verdana.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/Verdana.txt", name = "Verdana" },
     { ttf = "VerdanaBold.ttf", json = "VerdanaBold.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/VerdanaBold.txt", name = "VerdanaBold" },
-    { ttf = "Tahoma.ttf", json = "Tahoma.json", url = "ttps://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/Tahoma.txt", name = "Tahoma" },
-    { ttf = "TahomaBold.ttf", json = "TahomaBold.json", url = "ttps://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/TahomaBold.txt", name = "TahomaBold" }
+    { ttf = "Tahoma.ttf", json = "Tahoma.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/Tahoma.txt", name = "Tahoma" },
+    { ttf = "TahomaBold.ttf", json = "TahomaBold.json", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/fonts/TahomaBold.txt", name = "TahomaBold" }
 }
 
 for _, font in ipairs(fonts) do
@@ -98,20 +98,20 @@ function GetFontFromIndex(fontIndex)
 end
 
 local images = {
-    { image = "ak47.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/ak47.png", name = "AK47" },
-    { image = "ar.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/ar.png", name = "Assault Rifle" },
-    { image = "aug.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/aug.png", name = "AUG" },
-    { image = "db.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/db.png", name = "DB" },
-    { image = "flame.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/flame.png", name = "Flame" },
-    { image = "glock.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/glock.png", name = "Glock" },
-    { image = "knife.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/knife.png", name = "Knife" },
-    { image = "lmg.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/lmg.png", name = "LMG" },
-    { image = "p90.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/p90.png", name = "P90" },
-    { image = "rev.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/rev.png", name = "Revolver" },
-    { image = "rifle.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/rifle.png", name = "Rifle" },
-    { image = "shotgun.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/shotgun.png", name = "Shotgun" },
-    { image = "smg.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/smg.png", name = "SMG" },
-    { image = "tac.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/tac.png", name = "Tactical" }
+    { image = "ak47.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/ak47.png", name = "AK47" },
+    { image = "ar.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/ar.png", name = "Assault Rifle" },
+    { image = "aug.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/aug.png", name = "AUG" },
+    { image = "db.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/db.png", name = "DB" },
+    { image = "flame.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/flame.png", name = "Flame" },
+    { image = "glock.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/glock.png", name = "Glock" },
+    { image = "knife.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/knife.png", name = "Knife" },
+    { image = "lmg.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/lmg.png", name = "LMG" },
+    { image = "p90.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/p90.png", name = "P90" },
+    { image = "rev.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/rev.png", name = "Revolver" },
+    { image = "rifle.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/rifle.png", name = "Rifle" },
+    { image = "shotgun.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/shotgun.png", name = "Shotgun" },
+    { image = "smg.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/smg.png", name = "SMG" },
+    { image = "tac.png", url = "https://raw.githubusercontent.com/firm0001/uwu/refs/heads/main/dependencies/assets/tac.png", name = "Tactical" }
 }
 
 for _, img in pairs(images) do
